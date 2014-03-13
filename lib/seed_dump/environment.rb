@@ -5,7 +5,7 @@ class SeedDump
       Rails.application.eager_load!
 
       models = if env['MODEL'] || env['MODELS']
-                 (env['MODEL'] || env['MODELS']).split(',').collect {|x| x.strip.underscore.singularize.camelize.constantize }
+                 (env['MODEL'] || env['MODELS']).split(',').collect {|x| x.strip.underscore.camelize.constantize }
                else
                  ActiveRecord::Base.descendants.select do |model|
                    (model.to_s != 'ActiveRecord::SchemaMigration') && \
